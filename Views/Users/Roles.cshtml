@@ -1,0 +1,41 @@
+@model IdentityMvc.Models.UserRolesModel
+@inject Microsoft.AspNetCore.Identity.RoleManager<IdentityMvc.Models.ApplicationRole> RoleManager
+@inject Microsoft.AspNetCore.Identity.UserManager<IdentityMvc.Models.ApplicationUser> UserManager
+@{
+    var roleList = RoleManager.Roles.ToList();
+    var items = new List<SelectListItem>();
+    foreach (var role in roleList){
+        items.Add(new SelectListItem{
+            Value = role.Id,
+            Text = role.Description
+        });
+    }
+}
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <h4>Set user roles for "@UserManager.Users.FirstOrDefault(u => u.Id == ViewContext.RouteData.Values["id"].ToString()).Name"</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Roles"></label>
+                <select asp-for="Roles" asp-items="@items" multiple style="width: 100%;"></select>
+                <span asp-validation-for="Roles" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a asp-controller="Users" asp-action="Index" class="btn btn-secondary">Back</a>
+        </form>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/lib/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="~/lib/select2/dist/css/select2-bootstrap4.min.css">
+}
+
+@section Scripts {
+    <script src="~/lib/select2/dist/js/select2.min.js"></script>
+    <script>
+        $('#Roles').select2();
+    </script>
+}

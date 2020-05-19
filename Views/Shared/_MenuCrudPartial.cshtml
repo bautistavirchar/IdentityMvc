@@ -1,0 +1,24 @@
+@if(User.Identity.IsAuthenticated){
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarCrud" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Roles Manager
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarCrud">
+            <a class="dropdown-item" asp-controller="Manage" asp-action="Add">Add</a>
+            <a class="dropdown-item" asp-controller="Manage" asp-action="Index">View</a>
+            @* <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a> *@
+        </div>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarUsers" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Users
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarUsers">
+            <a class="dropdown-item" asp-controller="Users" asp-action="Add">Add</a>
+            <a class="dropdown-item" asp-controller="Users" asp-action="Index">View</a>
+            @* <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a> *@
+        </div>
+    </li>
+}

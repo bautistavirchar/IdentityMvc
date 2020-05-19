@@ -1,0 +1,51 @@
+@model IEnumerable<IdentityMvc.Models.ApplicationUser>
+@inject Microsoft.AspNetCore.Identity.UserManager<IdentityMvc.Models.ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Users";
+}
+<div class="row mb-2">
+    <div class="col-lg">
+        <a asp-action="Add" class="btn btn-primary float-right">Add</a>
+    </div>
+</div>
+<table class="table table-striped">
+    <thead>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Action</th>
+    </thead>
+    <tbody>
+        @foreach (var user in Model){
+            <tr>
+                <td>@user.Name</td>
+                <td>@user.Email</td>
+                <td>
+                    @{
+                        string roles = string.Empty;
+                        var roleList = await UserManager.GetRolesAsync(user);
+                        foreach (var role in roleList){
+                            roles += role + ",";
+                        }
+                    }
+                    @roles.TrimEnd(',')
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Actions
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
+                            <a class="dropdown-item" asp-action="Roles" asp-route-id="@user.Id">Roles</a>
+                            @if(User.Identity.Name != user.UserName){
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" asp-action="Delete" asp-route-id="@user.Id">Delete</a>
+                            }
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

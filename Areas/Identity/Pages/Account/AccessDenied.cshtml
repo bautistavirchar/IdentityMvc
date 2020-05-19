@@ -1,0 +1,11 @@
+@page
+@model AccessDeniedModel
+@{
+    ViewData["Title"] = "Access denied";
+}
+
+<header>
+    <h1>@ViewData["Title"]</h1>
+    <p>You're not allowed to operate this.</p>
+    <a href="@ViewData["ReturnUrl"]" class="btn btn-secondary">Back</a>
+</header>

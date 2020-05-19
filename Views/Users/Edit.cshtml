@@ -1,0 +1,44 @@
+@model IdentityMvc.Models.UserModel
+@inject Microsoft.AspNetCore.Identity.RoleManager<IdentityMvc.Models.ApplicationRole> RoleManager
+@{
+    @* var roleItems = new List<SelectListItem>();
+    foreach (var role in RoleManager.Roles.ToList()){
+        roleItems.Add(new SelectListItem{
+            Value = role.Id,
+            Text = role.Name
+        });
+    }
+    string userRole = string.Empty;
+    if(!string.IsNullOrEmpty(Model.Role) && !string.IsNullOrWhiteSpace(Model.Role)){
+        userRole = Model.Role;
+    }
+    var roles = new SelectList(roleItems,nameof(SelectListItem.Value),nameof(SelectListItem.Text),userRole); *@
+}
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <h4>Edit @Model.Name.</h4>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="Role"></label>
+                <input asp-for="Role" class="form-control" />
+                <select asp-for="Role" asp-items="@roles"></select>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div> *@
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a asp-controller="Users" asp-action="Index" class="btn btn-secondary">Back</a>
+
+        </form>
+    </div>
+</div>

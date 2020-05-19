@@ -1,0 +1,25 @@
+@model IdentityMvc.Models.RoleModel
+@{
+    ViewData["Title"] = "New Role";
+}
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <h4>Add a new role.</h4>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a asp-controller="Manage" asp-action="Index" class="btn btn-secondary">Back</a>
+        </form>
+    </div>
+</div>

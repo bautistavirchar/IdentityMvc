@@ -1,0 +1,22 @@
+@model IdentityMvc.Models.UserModel
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <h4>Create a new user.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a asp-controller="Users" asp-action="Index" class="btn btn-secondary">Back</a>
+        </form>
+    </div>
+</div>
